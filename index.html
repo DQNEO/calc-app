@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arithmetic Training</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #problem {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #answer {
+            font-size: 1.5em;
+            width: 100px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            font-size: 1.2em;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="problem">16 x 4</div>
+<input type="text" id="answer" readonly>
+<div class="button-container">
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="appendNumber('0')">0</button>
+    <button onclick="clearAnswer()">Clear</button>
+    <button onclick="checkAnswer()">Enter</button>
+</div>
+<div id="result"></div>
+
+<script>
+    let num1, num2, operator;
+
+    generateProblem();
+
+    function generateProblem() {
+        num1 = Math.floor(Math.random() * 20) + 1;
+        num2 = Math.floor(Math.random() * 10) + 1;
+        operator = 'x';
+        document.getElementById('problem').textContent = `${num1} ${operator} ${num2}`;
+        document.getElementById('answer').value = '';
+        document.getElementById('result').textContent = '';
+    }
+
+    function appendNumber(number) {
+        document.getElementById('answer').value += number;
+    }
+
+    function clearAnswer() {
+        document.getElementById('answer').value = '';
+    }
+
+    function checkAnswer() {
+        const userAnswer = parseInt(document.getElementById('answer').value);
+        const correctAnswer = (operator === 'x') ? num1 * num2 : num1 + num2;
+        const resultDiv = document.getElementById('result');
+
+        if (userAnswer === correctAnswer) {
+            resultDiv.textContent = "OK!";
+            resultDiv.style.color = "green";
+            setTimeout(()=>{
+                generateProblem();
+            }, 1000)
+        } else {
+            resultDiv.textContent = "NG. Try again!";
+            resultDiv.style.color = "red";
+        }
+
+    }
+</script>
+
+</body>
+</html>
