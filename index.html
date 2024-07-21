@@ -68,6 +68,13 @@
 
             document.getElementById("btnClear").addEventListener("click", clearAnswer)
             document.getElementById("btnEnter").addEventListener("click", checkAnswer)
+            for (let numberBtn of document.getElementsByClassName("btnNumber")) {
+                numberBtn.addEventListener("click", (e)=>{
+                    const inputNumber = e.target.dataset.number
+                    console.log(inputNumber)
+                    appendNumber(inputNumber)
+                })
+            }
             generateProblem();
         }
 
@@ -173,16 +180,16 @@
 <input type="text" id="answer">
 <div id="result"> </div>
 <div class="button-container">
-    <button onclick="appendNumber('7')">7</button>
-    <button onclick="appendNumber('8')">8</button>
-    <button onclick="appendNumber('9')">9</button>
-    <button onclick="appendNumber('4')">4</button>
-    <button onclick="appendNumber('5')">5</button>
-    <button onclick="appendNumber('6')">6</button>
-    <button onclick="appendNumber('1')">1</button>
-    <button onclick="appendNumber('2')">2</button>
-    <button onclick="appendNumber('3')">3</button>
-    <button onclick="appendNumber('0')">0</button>
+    <button class="btnNumber" data-number="7">7</button>
+    <button class="btnNumber" data-number="8">8</button>
+    <button class="btnNumber" data-number="9">9</button>
+    <button class="btnNumber" data-number="4">4</button>
+    <button class="btnNumber" data-number="5">5</button>
+    <button class="btnNumber" data-number="6">6</button>
+    <button class="btnNumber" data-number="1">1</button>
+    <button class="btnNumber" data-number="2">2</button>
+    <button class="btnNumber" data-number="3">3</button>
+    <button class="btnNumber" data-number="0">0</button>
     <button id="btnClear">C</button>
     <button id="btnEnter">&#x23CE;</button>
 </div>
