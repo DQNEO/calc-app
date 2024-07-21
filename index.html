@@ -68,6 +68,9 @@
 
 <script>
     let num1, num2, operator;
+    const eAnswer =  document.getElementById('answer')
+    const eProblem =  document.getElementById('problem')
+    const resultDiv = document.getElementById('result');
 
     generateProblem();
 
@@ -75,24 +78,23 @@
         num1 = Math.floor(Math.random() * 10) + 10 + 1 ;
         num2 = Math.floor(Math.random() * 10) + 1;
         operator = 'x';
-        document.getElementById('problem').textContent = `${num1} ${operator} ${num2}`;
-        document.getElementById('answer').value = '';
-        document.getElementById('result').innerText = '　';
+        eProblem.textContent = `${num1} ${operator} ${num2}`;
+        eAnswer.value = '';
+        resultDiv.innerText = '　';
     }
 
     function appendNumber(number) {
-        document.getElementById('answer').value += number;
+        eAnswer.value += number;
     }
 
     function clearAnswer() {
-        document.getElementById('answer').value = '';
-        document.getElementById('result').innerText = '　';
+        eAnswer.value = '';
+        resultDiv.innerText = '　';
     }
 
     function checkAnswer() {
-        const userAnswer = parseInt(document.getElementById('answer').value);
+        const userAnswer = parseInt(eAnswer.value);
         const correctAnswer = (operator === 'x') ? num1 * num2 : num1 + num2;
-        const resultDiv = document.getElementById('result');
 
         if (userAnswer === correctAnswer) {
             resultDiv.innerText = "OK!";
