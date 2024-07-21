@@ -121,11 +121,10 @@
 
 <script>
     let num1, num2, operator;
-    const eAnswer =  document.getElementById('answer');
-    const eProblem =  document.getElementById('problem');
-    const resultDiv = document.getElementById('result');
 
-    generateProblem();
+     eAnswer =  document.getElementById('answer');
+     eProblem =  document.getElementById('problem');
+     eResult = document.getElementById('result');
 
     function generateLeftNumber() {
         return Math.floor(Math.random() * 10) + 10 + 1;
@@ -140,7 +139,7 @@
         operator = 'x';
         eProblem.textContent = `${num1} ${operator} ${num2}`;
         eAnswer.value = '';
-        resultDiv.innerText = '　';
+        eResult.innerText = '　';
     }
 
     function appendNumber(number) {
@@ -149,7 +148,7 @@
 
     function clearAnswer() {
         eAnswer.value = '';
-        resultDiv.innerText = '　';
+        eResult.innerText = '　';
     }
 
     function checkAnswer() {
@@ -157,14 +156,23 @@
         const correctAnswer = (operator === 'x') ? num1 * num2 : num1 + num2;
 
         if (userAnswer === correctAnswer) {
-            resultDiv.innerText = "👍OK!";
-            resultDiv.style.color = "blue";
+            eResult.innerText = "OK!";
+            eResult.style.color = "blue";
             setTimeout(generateProblem, 1500);
         } else {
-            resultDiv.innerText = "NG";
-            resultDiv.style.color = "red";
+            eResult.innerText = "NG";
+            eResult.style.color = "red";
         }
     }
+
+    function main() {
+         eAnswer =  document.getElementById('answer');
+         eProblem =  document.getElementById('problem');
+         eResult = document.getElementById('result');
+        generateProblem();
+    }
+
+    main();
 </script>
 
 </body>
