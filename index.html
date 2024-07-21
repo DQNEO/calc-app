@@ -4,7 +4,6 @@
     <title>Arithmetic Training</title>
     <style>
         body {
-            font-family: sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -40,15 +39,18 @@
         }
 
         #result {
-            font-size: 1.5em;
-            margin-top: 20px;
+            font-size: 1.0em;
+            margin: .5em;
+            height:1.5em;
         }
     </style>
+    <meta charset="UTF-8">
 </head>
 <body>
 
 <div id="problem">16 x 4</div>
 <input type="text" id="answer" readonly>
+<div id="result"> </div>
 <div class="button-container">
     <button onclick="appendNumber('7')">7</button>
     <button onclick="appendNumber('8')">8</button>
@@ -63,7 +65,6 @@
     <button onclick="clearAnswer()">Clear</button>
     <button onclick="checkAnswer()">Enter</button>
 </div>
-<div id="result"></div>
 
 <script>
     let num1, num2, operator;
@@ -71,12 +72,12 @@
     generateProblem();
 
     function generateProblem() {
-        num1 = Math.floor(Math.random() * 90) + 10 + 1 ;
+        num1 = Math.floor(Math.random() * 10) + 10 + 1 ;
         num2 = Math.floor(Math.random() * 10) + 1;
         operator = 'x';
         document.getElementById('problem').textContent = `${num1} ${operator} ${num2}`;
         document.getElementById('answer').value = '';
-        document.getElementById('result').textContent = '';
+        document.getElementById('result').innerText = '　';
     }
 
     function appendNumber(number) {
@@ -85,6 +86,7 @@
 
     function clearAnswer() {
         document.getElementById('answer').value = '';
+        document.getElementById('result').innerText = '　';
     }
 
     function checkAnswer() {
@@ -93,13 +95,13 @@
         const resultDiv = document.getElementById('result');
 
         if (userAnswer === correctAnswer) {
-            resultDiv.textContent = "OK!";
-            resultDiv.style.color = "green";
+            resultDiv.innerText = "OK!";
+            resultDiv.style.color = "blue";
             setTimeout(()=>{
                 generateProblem();
             }, 1000)
         } else {
-            resultDiv.textContent = "NG. Try again!";
+            resultDiv.innerText = "WRONG";
             resultDiv.style.color = "red";
         }
 
