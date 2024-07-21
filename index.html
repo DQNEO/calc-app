@@ -4,6 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arithmetic Training</title>
+    <script>
+        let num1, num2, operator;
+        let eAnswer ;
+        let eProblem;
+        let eResult;
+
+        function generateLeftNumber() {
+            return Math.floor(Math.random() * 10) + 10 + 1;
+        }
+        function generateRightNumber() {
+            return Math.floor(Math.random() * 10) + 1;
+        }
+
+        function generateProblem() {
+            num1 = generateLeftNumber()
+            num2 = generateRightNumber()
+            operator = 'x';
+            eProblem.textContent = `${num1} ${operator} ${num2}`;
+            eAnswer.value = '';
+            eResult.innerText = '　';
+        }
+
+        function appendNumber(number) {
+            eAnswer.value += number;
+        }
+
+        function clearAnswer() {
+            eAnswer.value = '';
+            eResult.innerText = '　';
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(eAnswer.value);
+            const correctAnswer = (operator === 'x') ? num1 * num2 : num1 + num2;
+
+            if (userAnswer === correctAnswer) {
+                eResult.innerText = "OK!";
+                eResult.style.color = "blue";
+                setTimeout(generateProblem, 1500);
+            } else {
+                eResult.innerText = "NG";
+                eResult.style.color = "red";
+            }
+        }
+
+        function main() {
+            eAnswer =  document.getElementById('answer');
+            eProblem =  document.getElementById('problem');
+            eResult = document.getElementById('result');
+            generateProblem();
+        }
+
+        document.addEventListener("DOMContentLoaded", (event) => {
+            main();
+        });
+
+    </script>
     <style>
         /* Prevent double tap */
         html {
@@ -118,62 +175,6 @@
     a calculation app<br/>
     version 0.0.4<br/>
 </div>
-
-<script>
-    let num1, num2, operator;
-
-     eAnswer =  document.getElementById('answer');
-     eProblem =  document.getElementById('problem');
-     eResult = document.getElementById('result');
-
-    function generateLeftNumber() {
-        return Math.floor(Math.random() * 10) + 10 + 1;
-    }
-    function generateRightNumber() {
-        return Math.floor(Math.random() * 10) + 1;
-    }
-
-    function generateProblem() {
-        num1 = generateLeftNumber()
-        num2 = generateRightNumber()
-        operator = 'x';
-        eProblem.textContent = `${num1} ${operator} ${num2}`;
-        eAnswer.value = '';
-        eResult.innerText = '　';
-    }
-
-    function appendNumber(number) {
-        eAnswer.value += number;
-    }
-
-    function clearAnswer() {
-        eAnswer.value = '';
-        eResult.innerText = '　';
-    }
-
-    function checkAnswer() {
-        const userAnswer = parseInt(eAnswer.value);
-        const correctAnswer = (operator === 'x') ? num1 * num2 : num1 + num2;
-
-        if (userAnswer === correctAnswer) {
-            eResult.innerText = "OK!";
-            eResult.style.color = "blue";
-            setTimeout(generateProblem, 1500);
-        } else {
-            eResult.innerText = "NG";
-            eResult.style.color = "red";
-        }
-    }
-
-    function main() {
-         eAnswer =  document.getElementById('answer');
-         eProblem =  document.getElementById('problem');
-         eResult = document.getElementById('result');
-        generateProblem();
-    }
-
-    main();
-</script>
 
 </body>
 </html>
