@@ -100,13 +100,13 @@
         const correctAnswer = (operator === 'x') ? num1 * num2 : num1 + num2;
 
         if (userAnswer === correctAnswer) {
-            resultDiv.innerText = "OK!";
+            resultDiv.innerText = "👍OK!";
             resultDiv.style.color = "blue";
             setTimeout(()=>{
                 generateProblem();
             }, 2000)
         } else {
-            resultDiv.innerText = "WRONG";
+            resultDiv.innerText = "NG";
             resultDiv.style.color = "red";
         }
 
