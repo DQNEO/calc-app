@@ -65,6 +65,9 @@
             eAnswer =  document.getElementById('answer');
             eProblem =  document.getElementById('problem');
             eResult = document.getElementById('result');
+
+            document.getElementById("btnClear").addEventListener("click", clearAnswer)
+            document.getElementById("btnEnter").addEventListener("click", checkAnswer)
             generateProblem();
         }
 
@@ -180,8 +183,8 @@
     <button onclick="appendNumber('2')">2</button>
     <button onclick="appendNumber('3')">3</button>
     <button onclick="appendNumber('0')">0</button>
-    <button onclick="clearAnswer()">C</button>
-    <button onclick="checkAnswer()">&#x23CE;</button>
+    <button id="btnClear">C</button>
+    <button id="btnEnter">&#x23CE;</button>
 </div>
 <div id="footer">
     a calculation app<br/>
