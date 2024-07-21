@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arithmetic Training</title>
     <style>
         body {
@@ -10,46 +12,88 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
         }
 
         #problem {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         #answer {
-            font-size: 1.5em;
-            width: 100px;
-            text-align: right;
+            font-size: 2em;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
             margin-bottom: 20px;
+            background-color: #fff;
         }
 
         .button-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 15px;
+            width: 90%;
+            max-width: 400px;
         }
 
         button {
-            font-size: 1.2em;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            font-size: 1.5em;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: #007BFF;
+            color: white;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
 
         #result {
-            font-size: 1.0em;
-            margin: .5em;
-            height:1.5em;
+            font-size: 1.5em;
+            margin: 10px 0;
+            height: 2em;
+        }
+
+        #footer {
+            margin-top: 2em;
+            font-size: 0.8em;
+            text-align: center;
+        }
+
+        @media (max-width: 400px) {
+            #problem {
+                font-size: 2em;
+            }
+
+            #answer {
+                font-size: 1.5em;
+            }
+
+            button {
+                font-size: 1.2em;
+                padding: 10px;
+            }
+
+            #result {
+                font-size: 1.2em;
+            }
         }
     </style>
-    <meta charset="UTF-8">
 </head>
 <body>
 
 <div id="problem">16 x 4</div>
-<input type="text" id="answer" readonly>
+<input type="text" id="answer">
 <div id="result"> </div>
 <div class="button-container">
     <button onclick="appendNumber('7')">7</button>
@@ -65,20 +109,21 @@
     <button onclick="clearAnswer()">Clear</button>
     <button onclick="checkAnswer()">Enter</button>
 </div>
-<div id="footer" style="margin-top:8em; margin-bottom: 1em;">
+<div id="footer">
     a calculation app<br/>
     version 0.0.1<br/>
 </div>
+
 <script>
     let num1, num2, operator;
-    const eAnswer =  document.getElementById('answer')
-    const eProblem =  document.getElementById('problem')
+    const eAnswer =  document.getElementById('answer');
+    const eProblem =  document.getElementById('problem');
     const resultDiv = document.getElementById('result');
 
     generateProblem();
 
     function generateProblem() {
-        num1 = Math.floor(Math.random() * 10) + 10 + 1 ;
+        num1 = Math.floor(Math.random() * 10) + 10 + 1;
         num2 = Math.floor(Math.random() * 10) + 1;
         operator = 'x';
         eProblem.textContent = `${num1} ${operator} ${num2}`;
@@ -102,14 +147,11 @@
         if (userAnswer === correctAnswer) {
             resultDiv.innerText = "👍OK!";
             resultDiv.style.color = "blue";
-            setTimeout(()=>{
-                generateProblem();
-            }, 2000)
+            setTimeout(generateProblem, 2000);
         } else {
             resultDiv.innerText = "NG";
             resultDiv.style.color = "red";
         }
-
     }
 </script>
 
